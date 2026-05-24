@@ -31,10 +31,15 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.Property(u => u.CreatedAt)
             .HasColumnName("created_at");
+
+        //Relación adecuada con el dominio
+        builder
+            .HasMany(u => u.UserRoles)
+            .WithOne()
+            .HasForeignKey(ur => ur.UserId);
         
-        builder.HasMany(u => u.Roles)
-            .WithMany()
-            .UsingEntity(j => j.ToTable("user_roles"))
-            .Metadata.SetPropertyAccessMode(PropertyAccessMode.Field);
+        //Acceso a campo roles
+        builder.Navigation(u => u.UserRoles)
+            .UsePropertyAccessMode(PropertyAccessMode.Field);
     }
 }

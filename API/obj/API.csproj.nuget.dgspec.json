@@ -535,6 +535,9 @@
             "projectReferences": {
               "K:\\Elementos\\Rider\\S10\\L10MauricioCV.PortsAdapters\\Domain\\Domain.csproj": {
                 "projectPath": "K:\\Elementos\\Rider\\S10\\L10MauricioCV.PortsAdapters\\Domain\\Domain.csproj"
+              },
+              "K:\\Elementos\\Rider\\S10\\L10MauricioCV.PortsAdapters\\Infraestructure\\Infraestructure.csproj": {
+                "projectPath": "K:\\Elementos\\Rider\\S10\\L10MauricioCV.PortsAdapters\\Infraestructure\\Infraestructure.csproj"
               }
             }
           }

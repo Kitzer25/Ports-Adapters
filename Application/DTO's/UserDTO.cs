@@ -1,6 +1,6 @@
-namespace Domain.DTO_s;
+namespace Application.DTO_s;
 
-public class UserDTO
+public class UserDto
 {
     public Guid Id { get; set; }
     public string Username { get; set; }

@@ -1,8 +1,13 @@
 using System.Text;
-using Application.UserCase.User;
+using Application.Configuration;
+using Application.UserCase.Adapters.User;
+using Application.UserCase.Ports.User;
+using Domain.Ports;
 using Domain.Ports.Repositories;
 using Domain.Ports.Security;
+using Infraestructure.Configuration;
 using Infraestructure.Persistence;
+using Infraestructure.Persistence.Repositories;
 using Infraestructure.Persistence.Repositories.Entities;
 using Infraestructure.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -47,16 +52,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 /*
  * Dependencias
  */
-// Registro de Repositorios
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddApplication();
+builder.Services.AddInfrastructure();
 
-// Registro de Servicios de Seguridad
-builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
-builder.Services.AddScoped<IAuthSecurity, AuthSecurity>();
-
-// Registro del Caso de Uso
-builder.Services.AddScoped<CreateUserUseCase>();
 
 /*
  * Swagger

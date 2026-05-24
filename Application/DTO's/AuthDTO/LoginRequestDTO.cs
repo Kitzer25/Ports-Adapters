@@ -1,6 +1,6 @@
-namespace Domain.DTO_s.AuthDTO;
+namespace Application.DTO_s.AuthDTO;
 
-public class LoginRequestDTO
+public class LoginRequestDto
 {
     public string Username { get; set; }
     public string Password { get; set; }

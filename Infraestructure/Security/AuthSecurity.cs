@@ -23,7 +23,7 @@ public class AuthSecurity : IAuthSecurity
             InvalidOperationException("Sin clave secreta");
 
     private string Expiration() =>
-        _configuration["JwtSettings:AccessTEMP"]
+        _configuration["JwtSettings:ExpirationMinutes"]
         ?? throw new 
             InvalidOperationException("Sin Valor de expiración");
     
@@ -45,9 +45,9 @@ public class AuthSecurity : IAuthSecurity
             new Claim(ClaimTypes.Email, user.Email.Value)
         };
 
-        foreach (var role in user.Roles)
+        foreach (var role in user.UserRoles)
         {
-            ((IList)claims).Add(new Claim(ClaimTypes.Role, role.Name));
+            ((IList)claims).Add(new Claim(ClaimTypes.Role, role.RoleId.ToString()));
         }
 
         var key = new SymmetricSecurityKey(

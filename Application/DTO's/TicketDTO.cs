@@ -1,6 +1,6 @@
-namespace Domain.DTO_s;
+namespace Application.DTO_s;
 
-public class TicketDTO
+public class TicketDto
 {
     public Guid Id { get; set; }
     public string Title { get; set; }

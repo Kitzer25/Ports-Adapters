@@ -9,3 +9,4 @@ K:\Elementos\Rider\S10\L10MauricioCV.PortsAdapters\Domain\obj\Debug\net10.0\Doma
 K:\Elementos\Rider\S10\L10MauricioCV.PortsAdapters\Domain\obj\Debug\net10.0\refint\Domain.dll
 K:\Elementos\Rider\S10\L10MauricioCV.PortsAdapters\Domain\obj\Debug\net10.0\Domain.pdb
 K:\Elementos\Rider\S10\L10MauricioCV.PortsAdapters\Domain\obj\Debug\net10.0\ref\Domain.dll
+K:\Elementos\Rider\S10\L10MauricioCV.PortsAdapters\Domain\obj\Debug\net10.0\Domain.sourcelink.json

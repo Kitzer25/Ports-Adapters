@@ -4,16 +4,14 @@ namespace Domain.Entities;
 
 public class User
 {
-    private readonly List<Role> _roles = new();
-
+    private readonly List<UserRole> _userRoles = new();
     public Guid Id { get; private set; }
     public Username Username { get; private set; }
     public string PasswordHash { get; private set; }
     public Email Email { get; private set; }
     public DateTime CreatedAt { get; private set; }
 
-    public IReadOnlyCollection<Role> Roles => _roles;
-
+    public IReadOnlyCollection<UserRole> UserRoles => _userRoles.AsReadOnly();
     public User(Guid id, Username username, string passwordHash, Email email)
     {
         if (string.IsNullOrWhiteSpace(username.ToString()))
@@ -29,11 +27,11 @@ public class User
         CreatedAt = DateTime.UtcNow;
     }
 
-    public void AssignRole(Role? role)
+    public void AssignRole(Guid roleId)
     {
-        if (_roles.Any(r => role != null && r.Id == role.Id))
+        if (_userRoles.Any(ur => ur.RoleId == roleId))
             throw new InvalidOperationException("El usuario ya tiene este rol");
 
-        if (role != null) _roles.Add(role);
+        _userRoles.Add(new UserRole(Id, roleId));
     }
 }

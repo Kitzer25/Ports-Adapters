@@ -10,5 +10,5 @@ public interface IUnitOfWork : IDisposable
 
     public IGRepository<T> Repositories<T>()  where T : class;
     
-    Task<int> SaveChangesAsync();
+    Task<int> SaveChangesAsync(CancellationToken ct);
 }

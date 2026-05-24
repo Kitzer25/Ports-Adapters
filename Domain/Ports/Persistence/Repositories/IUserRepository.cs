@@ -6,4 +6,5 @@ namespace Domain.Ports.Repositories;
 public interface IUserRepository : IGRepository<User>
 {
     Task<User?> GetByUsername(Username username, CancellationToken ct);
+    Task<User?> GetByEmail(Email email, CancellationToken ct);
 }

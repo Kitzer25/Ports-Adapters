@@ -4,5 +4,5 @@ namespace Domain.Ports.Security;
 
 public interface IAuthSecurity
 {
-    string GenerateToken(User user);
+    string GenerateToken(User? user);
 }

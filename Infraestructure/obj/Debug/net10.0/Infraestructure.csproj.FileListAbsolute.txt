@@ -15,3 +15,4 @@ K:\Elementos\Rider\S10\L10MauricioCV.PortsAdapters\Infraestructure\obj\Debug\net
 K:\Elementos\Rider\S10\L10MauricioCV.PortsAdapters\Infraestructure\bin\Debug\net10.0\Domain.dll
 K:\Elementos\Rider\S10\L10MauricioCV.PortsAdapters\Infraestructure\bin\Debug\net10.0\Domain.pdb
 K:\Elementos\Rider\S10\L10MauricioCV.PortsAdapters\Infraestructure\obj\Debug\net10.0\Infraest.B0D41582.Up2Date
+K:\Elementos\Rider\S10\L10MauricioCV.PortsAdapters\Infraestructure\obj\Debug\net10.0\Infraestructure.sourcelink.json

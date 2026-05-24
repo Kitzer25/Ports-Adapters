@@ -1,6 +1,6 @@
-namespace Domain.DTO_s.AuthDTO;
+namespace Application.DTO_s.AuthDTO;
 
-public class LoginResponseDTO
+public class LoginResponseDto
 {
     public string Token { get; set; }
     public DateTime Expiration { get; set; }

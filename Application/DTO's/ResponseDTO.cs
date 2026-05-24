@@ -1,6 +1,6 @@
-namespace Domain.DTO_s;
+namespace Application.DTO_s;
 
-public class ResponseDTO
+public class ResponseDto
 {
     public Guid Id { get; set; }
     public string Message { get; set; }
