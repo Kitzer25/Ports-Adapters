@@ -1,7 +1,7 @@
 using Domain.Entities;
 using Domain.ValueObjects;
 
-namespace Domain.Ports.Repositories;
+namespace Domain.Ports.Persistence.Repositories;
 
 public interface IUserRepository : IGRepository<User>
 {

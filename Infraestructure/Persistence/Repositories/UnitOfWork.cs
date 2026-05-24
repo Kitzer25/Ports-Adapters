@@ -1,6 +1,6 @@
 using Domain.Entities;
 using Domain.Ports;
-using Domain.Ports.Repositories;
+using Domain.Ports.Persistence.Repositories;
 using Infraestructure.Persistence.Repositories.Entities;
 
 namespace Infraestructure.Persistence.Repositories;

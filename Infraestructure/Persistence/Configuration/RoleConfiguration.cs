@@ -1,4 +1,5 @@
 using Domain.Entities;
+using Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -17,9 +18,9 @@ public class RoleConfiguration : IEntityTypeConfiguration<Role>
             .IsRequired();
 
         builder.Property(r => r.Name)
+            .HasConversion(v => v.Value, v => new RoleName(v))
             .HasColumnName("role_name")
-            .IsRequired()
-            .HasMaxLength(100);
+            .IsRequired();
         
         builder.HasKey(r => r.Id);
     }

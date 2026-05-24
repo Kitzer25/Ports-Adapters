@@ -1,16 +1,22 @@
+using System.Text.RegularExpressions;
+using Domain.Errors;
+
 namespace Domain.ValueObjects;
 
 public sealed class Email : IEquatable<Email>
 {
     public string Value { get; }
+    
+    private static readonly Regex EmailRegex = 
+        new(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.Compiled);
 
     public Email(string? value)
     {
         if (string.IsNullOrWhiteSpace(value))
-            throw new ArgumentException("El email es requerido");
+            throw new DomainException("El email es requerido");
 
-        if (!value.Contains("@"))
-            throw new ArgumentException("Email inválido");
+        if (!EmailRegex.IsMatch(value))
+            throw new DomainException("Email inválido");
 
         Value = value;
     }

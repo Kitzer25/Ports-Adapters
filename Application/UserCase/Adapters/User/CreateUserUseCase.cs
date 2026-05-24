@@ -1,9 +1,8 @@
 using Application.UserCase.Ports.User;
+using Domain.Errors;
 using Domain.Ports;
-using Domain.Ports.Repositories;
 using Domain.Ports.Security;
 using Domain.ValueObjects;
-using Microsoft.Extensions.Configuration;
 
 namespace Application.UserCase.Adapters.User;
 
@@ -30,13 +29,16 @@ public class CreateUserUseCase : ICreateUserUseCase
         var userExist = await _unitOfWork.UserRepository.GetByUsername(username, ct);
         var emailExist = await _unitOfWork.UserRepository.GetByEmail(email, ct);
         
-        if (userExist != null || emailExist != null)
-            throw new InvalidOperationException("Username or Email already exists");
-        
-        var defaultRole = await _unitOfWork.RoleRepository.GetByRolName("User", ct);
+        if (userExist != null)
+            throw new DomainException("Username already exists");
+
+        if (emailExist != null)
+            throw new DomainException("Email already exists");
+
+        var defaultRole = await _unitOfWork.RoleRepository.GetByRolName(RoleName.User, ct);
         
         if  (defaultRole == null) 
-            throw new InvalidOperationException("Default role not found");
+            throw new DomainException("Rol no encontrado");
         
         var passwordHash = _passwordHasher.Hash(password);
         
@@ -46,8 +48,6 @@ public class CreateUserUseCase : ICreateUserUseCase
             passwordHash,
             email
         );
-        
-        Console.WriteLine("Registro de usuario pasó la prueba", user);
         
         user.AssignRole(defaultRole.Id);
 

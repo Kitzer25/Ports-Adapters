@@ -1,7 +1,8 @@
+using System.Security.Authentication;
 using Application.DTO_s.AuthDTO;
 using Application.UserCase.Ports.User;
+using Domain.Errors;
 using Domain.Ports;
-using Domain.Ports.Repositories;
 using Domain.Ports.Security;
 using Domain.ValueObjects;
 
@@ -31,12 +32,12 @@ public class LoginUserUseCase : ILoginUserUseCase
         var user = await _unitOfWork.UserRepository.GetByUsername(username, ct);
 
         if (user is null)
-            throw new Exception("Usuario no encontrado");
+            throw new DomainException("Usuario no encontrado");
 
         var isValid = _passwordHasher.Verify(user.PasswordHash, password);
 
         if (!isValid)
-            throw new Exception("Credenciales inválidas");
+            throw new InvalidCredentialException("Credenciales inválidas");
 
         var token = _authSecurity.GenerateToken(user);
 

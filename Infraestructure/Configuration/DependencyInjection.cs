@@ -1,5 +1,5 @@
 using Domain.Ports;
-using Domain.Ports.Repositories;
+using Domain.Ports.Persistence.Repositories;
 using Domain.Ports.Security;
 using Infraestructure.Persistence.Repositories;
 using Infraestructure.Persistence.Repositories.Entities;

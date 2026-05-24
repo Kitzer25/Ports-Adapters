@@ -1,8 +1,9 @@
 using Domain.Entities;
+using Domain.ValueObjects;
 
-namespace Domain.Ports.Repositories;
+namespace Domain.Ports.Persistence.Repositories;
 
 public interface IRoleRepository
 {
-    Task<Role?> GetByRolName(string rolname, CancellationToken ct);
+    Task<Role?> GetByRolName(RoleName rolname, CancellationToken ct);
 }

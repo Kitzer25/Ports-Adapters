@@ -1,5 +1,5 @@
 using Domain.Entities;
-using Domain.Ports.Repositories;
+using Domain.Ports.Persistence.Repositories;
 
 namespace Domain.Ports;
 

@@ -1,10 +1,12 @@
 using Application.DTO_s.AuthDTO;
-using Application.UserCase.Adapters.User;
-using Application.UserCase.Ports.User;
 using Domain.ValueObjects;
+using Application.UserCase.Ports.User;
+using Domain.Errors;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace L10MauricioCV.PortsAdapters.Controllers;
+
 
 [ApiController]
 [Route("api/[controller]")]
@@ -20,66 +22,40 @@ public class UsersController : ControllerBase
         _createUserUseCase = createUserUseCase;
         _loginUserUseCase = loginUserUseCase;
     }
-
+    
+    [AllowAnonymous]
     [HttpPost]
     public async Task<IActionResult> Register(
         [FromBody] RegisterRequestDto request, 
         CancellationToken ct)
     {
-        try 
-        {
-            // Convertimos strings a Value Objects de Dominio
-            var username = new Username(request.Username);
-            var email = new Email(request.Email);
+        var username = new Username(request.Username);
+        var email = new Email(request.Email);
 
-            await _createUserUseCase.Execute(
-                username, 
-                email, 
-                request.Password, 
-                ct);
+        await _createUserUseCase.Execute(username, email, request.Password, ct);
 
-            return Ok(new { message = "Usuario creado exitosamente" });
-        }
-        catch (InvalidOperationException ex)
-        {
-            // Captura validaciones de tus Value Objects
-            return BadRequest(new { error = ex.Message });
-        }
-        catch (Exception)
-        {
-            return StatusCode(500, "Error interno del servidor");
-        }
+        return Ok("Usuario registrado");
     }
 
+    [AllowAnonymous]
     [HttpPost("login")]
     public async Task<IActionResult> Login(
         [FromBody] LoginRequestDto request,
         CancellationToken ct)
     {
-        try
-        {
-            var username = new Username(request.Username);
+        var username = new Username(request.Username);
 
-            var result = await _loginUserUseCase.Execute(
-                username,
-                request.Password,
-                ct);
+        var result = await _loginUserUseCase.Execute(
+            username,
+            request.Password,
+            ct);
 
-            var response = new LoginResponseDto
-            {
-                Username = result.Username,
-                Token = result.Token
-            };
+        var response = new LoginResponseDto
+        {
+            Username = result.Username,
+            Token = result.Token
+        };
 
-            return Ok(response);
-        }
-        catch (ArgumentException ex)
-        {
-            return BadRequest(ex.Message);
-        }
-        catch (Exception ex)
-        {
-            return Unauthorized("Credenciales inválidas");
-        }
+        return Ok(response);
     }
 }
