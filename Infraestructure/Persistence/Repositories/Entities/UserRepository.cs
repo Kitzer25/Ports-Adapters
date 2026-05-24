@@ -20,6 +20,6 @@ public class UserRepository :
 
     public async Task<User?> GetByEmail(Email email, CancellationToken ct)
     {
-        return await _dbSet.AsNoTracking().Where(u => u.Email == email).FirstOrDefaultAsync(ct);
+        return await _dbSet.AsNoTracking().FirstOrDefaultAsync(u => u.Email == email, ct);
     }
 }

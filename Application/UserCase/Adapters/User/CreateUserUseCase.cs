@@ -30,16 +30,13 @@ public class CreateUserUseCase : ICreateUserUseCase
         var userExist = await _unitOfWork.UserRepository.GetByUsername(username, ct);
         var emailExist = await _unitOfWork.UserRepository.GetByEmail(email, ct);
         
-        if (userExist  != null || emailExist != null )
-            throw new Exception("Username or Email already exists");
-        
-        Console.WriteLine("PRUEBA 1 COMPLETADA");
+        if (userExist != null || emailExist != null)
+            throw new InvalidOperationException("Username or Email already exists");
         
         var defaultRole = await _unitOfWork.RoleRepository.GetByRolName("User", ct);
         
-        Console.WriteLine($"dATOS DE ROLE: {defaultRole.ToString()}");
-        
-        if  (defaultRole == null) throw new Exception("Default role not found");
+        if  (defaultRole == null) 
+            throw new InvalidOperationException("Default role not found");
         
         var passwordHash = _passwordHasher.Hash(password);
         

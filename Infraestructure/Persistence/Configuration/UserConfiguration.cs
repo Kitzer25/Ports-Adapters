@@ -16,7 +16,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(u => u.Id)
             .HasColumnName("user_id");
 
-        builder.Property(u => u.Username)
+       builder.Property(u => u.Username)
             .HasConversion(v => v.Value, v => new Username(v))
             .HasColumnName("username")
             .IsRequired();
@@ -31,6 +31,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.Property(u => u.CreatedAt)
             .HasColumnName("created_at");
+        
 
         //Relación adecuada con el dominio
         builder

@@ -40,10 +40,10 @@ public class UsersController : ControllerBase
 
             return Ok(new { message = "Usuario creado exitosamente" });
         }
-        catch (ArgumentException ex)
+        catch (InvalidOperationException ex)
         {
             // Captura validaciones de tus Value Objects
-            return BadRequest(ex.Message);
+            return BadRequest(new { error = ex.Message });
         }
         catch (Exception)
         {
