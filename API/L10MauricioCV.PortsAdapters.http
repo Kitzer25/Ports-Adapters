@@ -1,0 +1,7 @@
+
+@L10MauricioCV.PortsAdapters_HostAddress = http://localhost:5272
+
+GET {{L10MauricioCV.PortsAdapters_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
